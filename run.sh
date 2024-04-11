@@ -32,15 +32,15 @@ if python$PYTHON_VERSION --version &> /dev/null; then
         git fetch --tags && \
         git checkout 0.1.1 && \
         echo "Installing TTS..." && \
-        pip install --use-deprecated=legacy-resolver -e . -q && \
+        python$PYTHON_VERSION -m pip install --use-deprecated=legacy-resolver -e . -q && \
         cd .. && \
         echo "Installing other requirements..." && \
-        pip install -r requirements.txt -q && \
+        python$PYTHON_VERSION -m pip install -r requirements.txt -q && \
         echo "Downloading Japanese/Chinese tokenizer..." && \
-        python -m unidic download
+        python$PYTHON_VERSION -m unidic download
         touch .env/ok
     fi
-    python vixtts_demo.py
+    python$PYTHON_VERSION vixtts_demo.py
 else
     echo "Python version $PYTHON_VERSION is not installed. Please install it."
 fi
